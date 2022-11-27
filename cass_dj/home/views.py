@@ -1,15 +1,18 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
+
 # Create your views here.
 def homes(requset):
-    return render(requset,'home.html')
+    return render(requset, 'home.html')
 
-@api_view(['GET','POST'])
+
+@api_view(['GET', 'POST'])
 def hoemapi(request):
-    dis={
-        'name':'akshay',
-        'roll_no':12
+    dis = {
+        'name': 'akshay',
+        'roll_no': 12
     }
     if request.method == 'GET':
         print("you hit GET request")
@@ -18,3 +21,11 @@ def hoemapi(request):
         print("you hit POST request")
         print(data)
     return Response(data)
+
+
+@api_view(['GET', 'POST'])
+def finalapi(request):
+    dis = dict(name='iteam1', instock=12)
+    if request.method == 'GET':
+        print("successfully called GET")
+    return Response(dis)
