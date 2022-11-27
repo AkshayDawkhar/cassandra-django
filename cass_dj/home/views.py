@@ -13,4 +13,8 @@ def hoemapi(request):
     }
     if request.method == 'GET':
         print("you hit GET request")
-    return Response(dis)
+    if request.method == 'POST':
+        data = request.data
+        print("you hit POST request")
+        print(data)
+    return Response(data)

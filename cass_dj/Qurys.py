@@ -32,18 +32,18 @@ class Qury:
             self.session = self.cluster.connect()
 
         print("\nconnected to the ip.....")
-        rows=self.session.execute("SELECT * FROM system_schema.keyspaces WHERE keyspace_name='test_ks1';")
+        rows=self.session.execute("SELECT * FROM system_schema.keyspaces WHERE keyspace_name='model';")
         
         if rows:
-            yn=input("you have an keyspace alredy name test_ks1\ndo you wnat to make a overwrite it\n (y/n,defult=y):")
+            yn=input("you have an keyspace alredy name model\ndo you wnat to make a overwrite it\n (y/n,defult=y):")
             if not yn or yn[0] == 'y':
-                self.session.execute("DROP KEYSPACE test_ks1;")
+                self.session.execute("DROP KEYSPACE model;")
                 print("you choos y ..................")
                 self.making_key()
         else:
 
             self.making_key()
-        self.session.set_keyspace('test_ks1')
+        self.session.set_keyspace('model')
         
 
     def making_key(self):
@@ -52,11 +52,11 @@ class Qury:
         global session
         global i
         print("creating the database Keyspace")
-        self.session.execute("CREATE KEYSPACE test_ks1 WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1 };")
+        self.session.execute("CREATE KEYSPACE model WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1 };")
         
-        self.session.set_keyspace('test_ks1')
+        self.session.set_keyspace('model')
         print("creating the database Table")
-        self.session.execute("CREATE TABLE usertable ( userid uuid , id int, username text ,location text,PRIMARY KEY ((id),location) );")
+        self.session.execute("CREATE TABLE usertable ( userid uuid , id int, username text ,location text,PRIMARY KEY (id) );")
         
         if self.creat_data is None:
             print("creating the data qury.............")
