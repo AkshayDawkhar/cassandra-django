@@ -1,3 +1,7 @@
+import json
+# from cassandra.cqlengine
+from django.http import JsonResponse
+from django.core import serializers
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -25,7 +29,11 @@ def hoemapi(request):
 
 @api_view(['GET', 'POST'])
 def finalapi(request):
-    dis = dict(name='iteam1', instock=12)
+    dis = [{'name': 'iteam1', 'instock': 12}, {'name': 'iteam2', 'instock': 13}, ]
+    # dis_s= serializers.serialize('json',dis)
+    dis_d = dict(dis)
+    diss = dict(name='iteam0', instock=100)
     if request.method == 'GET':
-        print("successfully called GET")
-    return Response(dis)
+
+        print(type(dis_d), "successfully called GET")
+    return JsonResponse({'re':dis})
