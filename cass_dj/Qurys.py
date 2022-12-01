@@ -32,17 +32,17 @@ class Qury:
             print("\nmaking connection to the ip ")
             self.cluster = Cluster(['0.0.0.0'], port=9042)
 
-            print("connecting ther session")
+            print("connecting the session")
             self.session = self.cluster.connect()
 
         print("\nconnected to the ip.....")
         rows = self.session.execute("SELECT * FROM system_schema.keyspaces WHERE keyspace_name='model';")
 
         if rows:
-            yn = input("you have an keyspace alredy name model\ndo you wnat to make a overwrite it\n (y/n,defult=y):")
+            yn = input("you have an keyspace already name model\ndo you want to make a overwrite it\n (y/n,default=y):")
             if not yn or yn[0] == 'y':
                 self.session.execute("DROP KEYSPACE model;")
-                print("you choos y ..................")
+                print("you choose y ..................")
                 self.making_key()
         else:
 
@@ -61,7 +61,7 @@ class Qury:
         self.session.set_keyspace('model')
         print("creating the database Table")
         self.session.execute(
-            "CREATE TABLE usertable ( userid uuid , id int, username text ,location text,PRIMARY KEY (id) );")
+            "CREATE TABLE final_product ( pname text ,req text , noof int ,PRIMARY KEY (pname , req)) ;")
 
         if self.creat_data is None:
             print("creating the data qury.............")
