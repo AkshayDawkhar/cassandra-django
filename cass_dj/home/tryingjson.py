@@ -16,7 +16,7 @@ def getit():
     cluser =Cluster(['0.0.0.0'],port=9042)
     session = cluser.connect()
     session.row_factory= dict_factory
-    row = session.execute("SELECT * FROM  model.final_product_byname2 ;")
+    row = session.execute("SELECT * FROM  model.tryjson;")
     
     return row.all()
 # for r in row:
