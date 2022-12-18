@@ -28,3 +28,19 @@ def getit():
 # j=json.dumps(row.one())
 # jl=json.loads(row.one())
 # print(jl)
+def addit(s):
+    cluser =Cluster(['0.0.0.0'],port=9042)
+    session = cluser.connect()
+    session.row_factory= dict_factory
+    print("-----------------------------------------------------=----------------=----------------")
+    js=json.dumps(s)
+    # print(js,type(js))
+    # print("INSERT INTO model.tryjson JSON '"+js+"'")
+    ss="INSERT INTO model.tryjson JSON '"+js+"'"
+    # print(ss)
+    # sp=session.prepare("INSERT INTO model.tryjson JSON ? ")
+    # session.execute(ss)
+    row = session.execute("SELECT * FROM  model.tryingjson2;")
+    r=dict(row.one())
+    print(r)
+    return r 

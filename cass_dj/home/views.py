@@ -30,11 +30,13 @@ def hoemapi(request):
 
 @api_view(['GET', 'POST'])
 def finalapi(request):
-    dis = [{'name': 'iteam1', 'instock': 12}, {'name': 'iteam2', 'instock': 13}, ]
+    # dis = [{'name': 'iteam1', 'instock': 12}, {'name': 'iteam2', 'instock': 13}, ]
     # dis_s= serializers.serialize('json',dis)
-    dis_d = dict(dis)
-    diss = dict(name='iteam0', instock=100)
-    if request.method == 'GET':
-
-        print(type(dis_d), "successfully called GET")
-    return JsonResponse({'re':dis})
+    # dis_d = dict(dis)
+    # diss = dict(name='iteam0', instock=100)
+    if request.method == 'POST':
+        data=request.data
+        print(data,type(data))
+        print( "successfully called POST")
+        return Response(tryingjson.addit(data))
+    return Response({})
