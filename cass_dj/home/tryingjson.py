@@ -16,7 +16,7 @@ def getit():
     cluser =Cluster(['0.0.0.0'],port=9042)
     session = cluser.connect()
     session.row_factory= dict_factory
-    row = session.execute("SELECT * FROM  model.tryjson;")
+    row = session.execute("SELECT * FROM  model.pro;")
     
     return row.all()
 # for r in row:
@@ -34,13 +34,13 @@ def addit(s):
     session.row_factory= dict_factory
     print("-----------------------------------------------------=----------------=----------------")
     js=json.dumps(s)
-    # print(js,type(js))
+    print(js,type(js))
     # print("INSERT INTO model.tryjson JSON '"+js+"'")
-    ss="INSERT INTO model.tryjson JSON '"+js+"'"
-    # print(ss)
+    ss="INSERT INTO model.pro JSON '"+js+"'"
+    print(ss)
     # sp=session.prepare("INSERT INTO model.tryjson JSON ? ")
-    # session.execute(ss)
-    row = session.execute("SELECT * FROM  model.tryingjson2;")
-    r=dict(row.one())
-    print(r)
-    return r 
+    session.execute(ss)
+    row = session.execute("SELECT * FROM model.pro ;")
+    # r=dict(row.all())
+    print(row)
+    return row.all() 
